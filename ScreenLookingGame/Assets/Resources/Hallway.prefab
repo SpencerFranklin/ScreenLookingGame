@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 65733319921880544}
   - component: {fileID: 23139470028833358}
   - component: {fileID: 54248905965897766}
+  - component: {fileID: 114964309865459564}
   m_Layer: 0
   m_Name: Wall3
   m_TagString: Untagged
@@ -42,6 +43,7 @@ GameObject:
   - component: {fileID: 65519020437522738}
   - component: {fileID: 23052700136817652}
   - component: {fileID: 54852992925032544}
+  - component: {fileID: 114132478850738518}
   m_Layer: 0
   m_Name: Wall1
   m_TagString: Untagged
@@ -61,6 +63,7 @@ GameObject:
   - component: {fileID: 65093029472777164}
   - component: {fileID: 23827712037791756}
   - component: {fileID: 54364742160044304}
+  - component: {fileID: 114451971788256370}
   m_Layer: 0
   m_Name: Wall4
   m_TagString: Untagged
@@ -80,6 +83,7 @@ GameObject:
   - component: {fileID: 65891198699862456}
   - component: {fileID: 23704478851803460}
   - component: {fileID: 54294815644760210}
+  - component: {fileID: 114938796032578282}
   m_Layer: 0
   m_Name: Wall2
   m_TagString: Untagged
@@ -435,3 +439,55 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114132478850738518
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1348315863460456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a66f973e2f68a341b0b819093cfbe16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDoor: 0
+  isColliding: 0
+--- !u!114 &114451971788256370
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1363202931700852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a66f973e2f68a341b0b819093cfbe16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDoor: 0
+  isColliding: 0
+--- !u!114 &114938796032578282
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1619593870846980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a66f973e2f68a341b0b819093cfbe16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDoor: 0
+  isColliding: 0
+--- !u!114 &114964309865459564
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1016012401563766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a66f973e2f68a341b0b819093cfbe16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDoor: 0
+  isColliding: 0
