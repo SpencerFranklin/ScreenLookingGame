@@ -5,13 +5,12 @@ using UnityEngine;
 public class Wall : MonoBehaviour
 {
 	public bool isDoor = false;
-	public enum Direction {North, South, East, West	};
 	public bool isColliding;
 
 	// Use this for initialization
 	void Start ()
 	{
-		Debug.Log (this.gameObject.transform.localPosition + "  " + this.gameObject.name);
+		//Debug.Log (this.gameObject.transform.localPosition + "  " + this.gameObject.name);
 	}
 	
 	// Update is called once per frame
@@ -20,23 +19,23 @@ public class Wall : MonoBehaviour
 		
 	}
 
-	public Direction getDirection()
+	public Global.Direction getDirection()
 	{
 		if (this.gameObject.transform.forward == Vector3.forward) {
-			return Direction.North;
+			return Global.Direction.North;
 		} else if (this.gameObject.transform.forward ==  -Vector3.forward) {
-			return Direction.South;
+			return Global.Direction.South;
 		} else if (this.gameObject.transform.forward == Vector3.right) {
-			return Direction.East;
+			return Global.Direction.East;
 		} else {
-			return Direction.West;
+			return Global.Direction.West;
 		}
 	}
 
-	public bool isOpposite(Direction dir){
-		if ((this.getDirection () == Direction.South && dir == Direction.North) || (this.getDirection () == Direction.North && dir == Direction.South)) {
+	public bool isOpposite(Global.Direction dir){
+		if ((this.getDirection () == Global.Direction.South && dir == Global.Direction.North) || (this.getDirection () == Global.Direction.North && dir == Global.Direction.South)) {
 			return true;
-		} else if ((this.getDirection () == Direction.West && dir == Direction.East) || (this.getDirection () == Direction.East && dir == Direction.West)) {
+		} else if ((this.getDirection () == Global.Direction.West && dir == Global.Direction.East) || (this.getDirection () == Global.Direction.East && dir == Global.Direction.West)) {
 			return true;
 		} else {
 			return false;
@@ -45,13 +44,16 @@ public class Wall : MonoBehaviour
 	}
 
 	void OnTriggerEnter(){
-
+		Debug.Log ("--------------------------------");
 		isColliding = true;
 	}
 
 	void OnTriggerExit(){
+
 		isColliding = false;
 	}
+
+
 
 
 }

@@ -6,10 +6,15 @@ public class Room : MonoBehaviour
 {
 	public GameObject room;
 	public string name;
-	public bool isCollidingg;
+	//public bool isColliding;
+	public List<Vector2> gridList = new List<Vector2>();
+	public List<Room> blocksInRoom = new List<Room>();
 	// Use this for initialization
 	void Start ()
 	{
+
+	}
+	public Room (){
 
 	}
 
@@ -39,6 +44,42 @@ public class Room : MonoBehaviour
 
 	}
 
+	public GameObject southWall(){
+		foreach (Transform child in room.transform) {
+			if ((int) child.gameObject.GetComponent<Wall> ().getDirection() == (int)(Global.Direction.South)) {
+				return child.gameObject;
+			}
+		}
+		return null;
+	}
+
+	public GameObject northWall(){
+		foreach (Transform child in room.transform) {
+			if ((int) child.gameObject.GetComponent<Wall> ().getDirection() == (int)(Global.Direction.North)) {
+				return child.gameObject;
+			}
+		}
+		return null;
+	}
+
+	public GameObject eastWall(){
+		foreach (Transform child in room.transform) {
+			if ((int) child.gameObject.GetComponent<Wall> ().getDirection() == (int)(Global.Direction.East)) {
+				return child.gameObject;
+			}
+		}
+		return null;
+	}
+
+	public GameObject westWall(){
+		foreach (Transform child in room.transform) {
+			if ((int) child.gameObject.GetComponent<Wall> ().getDirection() == (int)(Global.Direction.West)) {
+				return child.gameObject;
+			}
+		}
+		return null;
+	}
+
 	public List<Wall> getWallsAsList ()
 	{
 		List<Wall> walls = new List<Wall> ();
@@ -56,7 +97,6 @@ public class Room : MonoBehaviour
 
 	public bool isColliding(){
 		List<Wall> walls = new List<Wall> ();
-
 		foreach (Transform child in room.transform) {
 			if (!child.name.Equals ("Cube") && !child.name.Equals ("Cube(Clone)")) {
 				if (child.gameObject.GetComponent<Wall> ().isColliding) {

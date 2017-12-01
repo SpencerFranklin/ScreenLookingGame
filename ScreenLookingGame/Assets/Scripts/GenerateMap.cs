@@ -24,18 +24,102 @@ public class GenerateMap : MonoBehaviour
 		parentObj.name = "Map";
 		parentObj.transform.position = new Vector3 (0, 0, 0);
 
-		wallSpawnFrequency = .25f;
+		//wallSpawnFrequency = .25f;
 
-		GameObject obj = Instantiate (Resources.Load ("Square", typeof(GameObject))) as GameObject;
-		obj.gameObject.transform.RotateAround (obj.gameObject.transform.position, Vector3.up, Random.Range(0, 3) * 90);
+		//GameObject obj = Instantiate (Resources.Load ("Square", typeof(GameObject))) as GameObject;
+		//obj.gameObject.transform.RotateAround (obj.gameObject.transform.position, Vector3.up, Random.Range(0, 3) * 90);
 		//Debug.Log (obj.name);
-		Room current = new Room (obj, obj.name);
-		currentMap.Add (current);
+		//Room current = new Room (obj, obj.name);
+		//currentMap.Add (current);
 
-		Generate ();
-			
+		//Generate ();
+		MakeGrid();
+
 	}
 
+
+	public void MakeGrid(){
+		Room r = new Room (); //make new room
+		int gX = 0;
+		int gY = 0;
+		Vector2 gridPos = new Vector2(gX, gY);
+		int numRooms = Random.Range (Random.Range (1, 4), Random.Range (9, 15));
+		r.gridList.Add (gridPos);
+		int gridCounter = 0;
+		numRooms--;
+
+		while (numRooms > 0) {
+			gX = (int) r.gridList [gridCounter].x;
+			gY = (int) r.gridList [gridCounter].y;
+
+			if (!r.gridList.Contains(new Vector2(gX, gY + 1)) && numRooms > 0){ // if the grid space above is empty
+				if (Random.value < .7f) {
+					r.gridList.Add (new Vector2 (gX, gY + 1));
+					numRooms--;
+				}
+
+			}
+			if (!r.gridList.Contains(new Vector2(gX, gY - 1)) && numRooms > 0){ // if the grid space below is empty
+				if (Random.value < .7f) {
+					r.gridList.Add (new Vector2 (gX, gY - 1));
+					numRooms--;
+				}
+
+			}
+			if (!r.gridList.Contains(new Vector2(gX + 1, gY)) && numRooms > 0){ // if the grid space right is empty
+				if (Random.value < .7f) {
+					r.gridList.Add (new Vector2 (gX + 1, gY));
+					numRooms--;
+				}
+
+			}
+			if (!r.gridList.Contains(new Vector2(gX - 1, gY)) && numRooms > 0){ // if the grid space left is empty
+				if (Random.value < .7f) {
+					r.gridList.Add (new Vector2 (gX - 1, gY));
+					numRooms--;
+					//Debug.Log (new Vector2 (gX - 1, gY));
+				}
+
+			}
+
+			if (gridCounter + 1 < r.gridList.Count)
+				gridCounter++;
+		}
+
+		foreach (Vector2 v in r.gridList){
+			Debug.Log (v);
+		}
+		MakeRoom (r);
+		ClearInnerWalls (r);
+	}
+
+	public void ClearInnerWalls(Room r){
+		int i = 0;
+		foreach (Vector2 v in r.gridList) {
+			if (r.gridList.Contains (new Vector2 (v.x, v.y - 1))) {
+				Destroy (r.blocksInRoom [i].southWall());
+			}
+			if (r.gridList.Contains (new Vector2 (v.x, v.y + 1))) {
+				Destroy (r.blocksInRoom [i].northWall());
+			}
+			if (r.gridList.Contains (new Vector2 (v.x + 1, v.y))) {
+				Destroy (r.blocksInRoom [i].eastWall());
+			}
+			if (r.gridList.Contains (new Vector2 (v.x -1, v.y))) {
+				Destroy (r.blocksInRoom [i].westWall());
+			}
+			i++;
+		}
+	}
+
+	public void MakeRoom(Room r){
+		foreach (Vector2 v in r.gridList) {
+			GameObject obj = Instantiate (Resources.Load ("Square", typeof(GameObject))) as GameObject;
+			obj.transform.position = new Vector3(obj.transform.position.x + v.x, obj.transform.position.y, obj.transform.position.z + v.y);
+			r.blocksInRoom.Add (new Room(obj, obj.name));
+		}
+
+	}
 	void Generate ()
 	{
 		while (totalRoomLimit > 0) {
@@ -84,7 +168,7 @@ public class GenerateMap : MonoBehaviour
 					//line up the lineupWall object to the wall w
 
 				}
-				Debug.Log (w.name + "  -    " + w.getDirection ());
+				//Debug.Log (w.name + "  -    " + w.getDirection ());
 			}
 			if (roomPointer + 1 <= currentMap.Count) {
 				roomPointer++;
@@ -98,6 +182,8 @@ public class GenerateMap : MonoBehaviour
 	{
 		
 	}
+
+
 
 
 }
