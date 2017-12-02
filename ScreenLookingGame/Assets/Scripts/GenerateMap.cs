@@ -8,7 +8,12 @@ public class GenerateMap : MonoBehaviour
 	public List<GameObject> allRoomGameObj = new List<GameObject> ();
 	private List<Room> allRooms = new List<Room> ();
 	GameObject parentObj;
-	private int totalRoomLimit = 5;
+	private int totalRoomLimit = 1;
+	public int minOfMinRange = 1;
+	public int maxOfMinRange = 4;
+	public int minOfMaxRange = 9;
+	public int maxOfMaxRange = 15;
+
 	private int roomPointer = 0;
 	public float wallSpawnFrequency;
 	// Use this for initialization
@@ -33,17 +38,20 @@ public class GenerateMap : MonoBehaviour
 		//currentMap.Add (current);
 
 		//Generate ();
-		MakeGrid();
+		while (totalRoomLimit > 0) {
+			currentMap.Add (MakeRoom ());
+			totalRoomLimit--;
+		}
 
 	}
 
 
-	public void MakeGrid(){
+	public Room MakeRoom(){
 		Room r = new Room (); //make new room
 		int gX = 0;
 		int gY = 0;
 		Vector2 gridPos = new Vector2(gX, gY);
-		int numRooms = Random.Range (Random.Range (1, 4), Random.Range (9, 15));
+		int numRooms = Random.Range (Random.Range (minOfMinRange, maxOfMinRange), Random.Range (minOfMaxRange, maxOfMaxRange));
 		r.gridList.Add (gridPos);
 		int gridCounter = 0;
 		numRooms--;
@@ -89,10 +97,12 @@ public class GenerateMap : MonoBehaviour
 		foreach (Vector2 v in r.gridList){
 			Debug.Log (v);
 		}
-		MakeRoom (r);
+		InsRoom (r);
 		ClearInnerWalls (r);
+		return r;
 	}
 
+	//delete the inner walls of a room
 	public void ClearInnerWalls(Room r){
 		int i = 0;
 		foreach (Vector2 v in r.gridList) {
@@ -110,15 +120,19 @@ public class GenerateMap : MonoBehaviour
 			}
 			i++;
 		}
+
+
 	}
 
-	public void MakeRoom(Room r){
+	//instantiate the room 
+	public void InsRoom(Room r){
+		GameObject p = Instantiate(new GameObject());
 		foreach (Vector2 v in r.gridList) {
-			GameObject obj = Instantiate (Resources.Load ("Square", typeof(GameObject))) as GameObject;
+			GameObject obj = Instantiate (Resources.Load ("Square", typeof(GameObject)), p.transform) as GameObject;
 			obj.transform.position = new Vector3(obj.transform.position.x + v.x, obj.transform.position.y, obj.transform.position.z + v.y);
 			r.blocksInRoom.Add (new Room(obj, obj.name));
 		}
-
+		r.room = p;
 	}
 	void Generate ()
 	{
