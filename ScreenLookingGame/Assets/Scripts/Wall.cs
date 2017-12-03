@@ -6,6 +6,7 @@ public class Wall : MonoBehaviour
 {
 	public bool isDoor = false;
 	public bool isColliding;
+	public bool isConnecter = false;
 
 	// Use this for initialization
 	void Start ()

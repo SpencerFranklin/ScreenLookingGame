@@ -137,10 +137,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allRoomGameObj:
   - {fileID: 1647494987108154, guid: 52c89f8f5a40d1d46a23637396825c64, type: 2}
+  totalRoomLimit: 20
   minOfMinRange: 1
   maxOfMinRange: 4
   minOfMaxRange: 12
   maxOfMaxRange: 16
+  matList:
+  - {fileID: 2100000, guid: c5c959d144c36f74fba1e31b6c74371e, type: 2}
+  - {fileID: 2100000, guid: 66784f63bd62292429cee5526008b213, type: 2}
+  - {fileID: 2100000, guid: 41315359e0fdba9409da565fe310bad2, type: 2}
+  - {fileID: 2100000, guid: edaff4339b78b7b47aa69abe6436a0f8, type: 2}
   wallSpawnFrequency: 0
 --- !u!4 &205711756
 Transform:
