@@ -37,6 +37,9 @@ public class PlayerManager : MonoBehaviour {
 			o.GetComponent<FirstPersonController> ().playerID = id;
 			o.GetComponentInChildren<Shoot>().playerID = id;
 
+			o.GetComponent<Player> ().itObj = o.transform.Find ("It").gameObject;
+			o.GetComponent<Player> ().notItObj = o.transform.Find ("Notit").gameObject;
+
 			setPlayerCamera (i + 1, o);
 
 			o.transform.Find("It").gameObject.layer = LayerMask.NameToLayer(id);
@@ -64,6 +67,8 @@ public class PlayerManager : MonoBehaviour {
 					c.cullingMask &=  ~(1 << LayerMask.NameToLayer("P" + x + "w"));
 				}
 			}
+
+
 
 			int pick = Random.Range (0, roomList.Count);
 			while (usedSpawns.Contains(pick)){
