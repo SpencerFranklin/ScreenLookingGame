@@ -475,7 +475,19 @@ public class GenerateMap : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		
+
+		GameObject[] pList = GameObject.FindGameObjectsWithTag ("RoomParent");
+		foreach (GameObject g in pList) {
+			foreach (Transform child in g.transform) {
+				if (child.name == "Door") {
+					GameObject obj = Instantiate (Resources.Load ("Door", typeof(GameObject)), g.transform) as GameObject;
+					obj.transform.position = child.position;
+					obj.transform.rotation = child.rotation;
+					//Debug.Log (wall.gameObject);
+					Destroy (child.gameObject);
+				}
+			}
+		}
 	}
 
 
