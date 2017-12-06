@@ -33,10 +33,37 @@ public class PlayerManager : MonoBehaviour {
 			o.GetComponent<Player> ().id = playerList [i].id;
 			o.GetComponent<Player> ().it = playerList [i].it;
 
-			o.GetComponent<FirstPersonController> ().playerID = ("P" + (i+1));
-			o.GetComponentInChildren<Shoot>().playerID = ("P" + (i+1));
+			string id = "P" + (i + 1);
+			o.GetComponent<FirstPersonController> ().playerID = id;
+			o.GetComponentInChildren<Shoot>().playerID = id;
 
 			setPlayerCamera (i + 1, o);
+
+			o.transform.Find("It").gameObject.layer = LayerMask.NameToLayer(id);
+			o.transform.Find("Notit").gameObject.layer = LayerMask.NameToLayer(id);
+
+			foreach (Transform child in o.transform.Find("It")) {
+					child.gameObject.layer = LayerMask.NameToLayer(id);
+			}
+
+			foreach (Transform child in o.transform.Find("Notit")) {
+				child.gameObject.layer = LayerMask.NameToLayer(id);
+			}
+
+			foreach (Transform child in o.transform.Find("FirstPersonCharacter")) {
+				child.gameObject.layer = LayerMask.NameToLayer(id + "w");
+				child.GetChild(0).gameObject.layer = LayerMask.NameToLayer(id + "w");
+			}
+
+			Camera c = o.GetComponentInChildren<Camera>();
+			c.cullingMask &=  ~(1 << LayerMask.NameToLayer(id));
+			c.cullingMask |=  1 << LayerMask.NameToLayer(id + "w");
+
+			for(int x = 1; x< 5; x++) {
+				if (x != (i + 1)) {
+					c.cullingMask &=  ~(1 << LayerMask.NameToLayer("P" + x + "w"));
+				}
+			}
 
 			int pick = Random.Range (0, roomList.Count);
 			while (usedSpawns.Contains(pick)){
