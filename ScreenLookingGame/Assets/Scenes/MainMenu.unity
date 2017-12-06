@@ -1849,6 +1849,7 @@ GameObject:
   - component: {fileID: 1011410169}
   - component: {fileID: 1011410168}
   - component: {fileID: 1011410167}
+  - component: {fileID: 1011410170}
   m_Layer: 0
   m_Name: Rocking Chair
   m_TagString: Untagged
@@ -1935,6 +1936,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 200.081, z: 0}
+--- !u!114 &1011410170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1011410166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1254af3492eaa049b5fe7041c2e91d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1055763070
 GameObject:
   m_ObjectHideFlags: 0
@@ -2884,6 +2896,7 @@ GameObject:
   - component: {fileID: 1469125647}
   - component: {fileID: 1469125646}
   - component: {fileID: 1469125645}
+  - component: {fileID: 1469125648}
   m_Layer: 0
   m_Name: Armchair
   m_TagString: Untagged
@@ -2969,6 +2982,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: -205.519, z: 0}
+--- !u!114 &1469125648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1469125644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1254af3492eaa049b5fe7041c2e91d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1552775720
 GameObject:
   m_ObjectHideFlags: 0
