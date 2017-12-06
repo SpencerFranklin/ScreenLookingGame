@@ -3150,7 +3150,7 @@ MonoBehaviour:
     playerID: 
     XSensitivity: 3
     YSensitivity: 3
-    clampVerticalRotation: 0
+    clampVerticalRotation: 1
     MinimumX: -90
     MaximumX: 90
     smooth: 0
