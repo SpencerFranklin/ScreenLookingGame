@@ -60,7 +60,7 @@ public class Player : MonoBehaviour {
 					it = true;
 				}
 			}
-			Destroy (c.gameObject);
+			//Destroy (c.gameObject);
 		}
 
 	}
