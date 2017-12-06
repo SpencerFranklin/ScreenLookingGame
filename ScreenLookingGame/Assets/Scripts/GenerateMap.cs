@@ -391,6 +391,7 @@ public class GenerateMap : MonoBehaviour
 		ClearInnerWalls (r);
 		r.room = p;
 		r.spawnObjectsInRoom ();
+		r.addLights ();
 		Room tmp = p.AddComponent<Room>() as Room;
 		p.GetComponent<Room> ().blocksInRoom = r.blocksInRoom;
 		p.GetComponent<Room> ().gridList = r.gridList;
@@ -475,7 +476,6 @@ public class GenerateMap : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-
 		GameObject[] pList = GameObject.FindGameObjectsWithTag ("RoomParent");
 		foreach (GameObject g in pList) {
 			foreach (Transform child in g.transform) {
