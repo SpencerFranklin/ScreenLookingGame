@@ -14,6 +14,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 		public enum PlayerID{
 			P1,P2,P3,P4
 		}
+
 		//public PlayerID pID;
 		public string playerID;
 

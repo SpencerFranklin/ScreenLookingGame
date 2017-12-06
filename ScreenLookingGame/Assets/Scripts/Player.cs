@@ -32,22 +32,22 @@ public class Player : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision c){
-		int l = c.gameObject.layer;
-		string lm = LayerMask.LayerToName (l).Substring (0, 2);
-		if (lm == "P1" || 
-			lm == "P2" ||
-			lm == "P3" ||
-			lm == "P4") {
+		string n = c.gameObject.name.Substring(0,2);
+		if (n == "P1" || 
+			n == "P2" ||
+			n == "P3" ||
+			n == "P4") {
 
+			Debug.Log ("Hit");
 			if (!it) {
-				GameObject o = GameObject.Find (lm);
+				GameObject o = GameObject.Find (n);
 				if (o.GetComponent<Player> ().it != true) {
 					o.GetComponent<Player> ().it = true;
 				} else {
 					it = true;
 				}
 			}
-		
+			Destroy (c.gameObject);
 		}
 
 	}

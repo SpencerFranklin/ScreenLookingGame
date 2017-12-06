@@ -21,7 +21,7 @@ public class Shoot : MonoBehaviour {
 			GameObject instantiatedProjectile = Instantiate(bullet, barrel.transform.position, barrel.transform.rotation);
 
 			string l = LayerMask.LayerToName (barrel.layer);
-			instantiatedProjectile.gameObject.layer = LayerMask.NameToLayer (l);
+			instantiatedProjectile.gameObject.name = l;
 
 			instantiatedProjectile.GetComponent<Rigidbody>().velocity = barrel.transform.TransformDirection(Vector3.forward*speed);
 		}

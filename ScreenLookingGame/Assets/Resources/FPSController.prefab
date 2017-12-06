@@ -671,6 +671,7 @@ GameObject:
   - component: {fileID: 54688903312053004}
   - component: {fileID: 82232618814216682}
   - component: {fileID: 114247191924308906}
+  - component: {fileID: 136312010989374352}
   m_Layer: 0
   m_Name: FPSController
   m_TagString: Untagged
@@ -1204,7 +1205,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1883866662365890}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 8.561529, y: 0.037364103, z: 1.9391979}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children:
   - {fileID: 4676632564970846}
@@ -3237,6 +3238,19 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1930085649280438}
   m_Enabled: 1
+--- !u!136 &136312010989374352
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1883866662365890}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.75
+  m_Height: 2.7
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: -0.2}
 --- !u!136 &136376070724262158
 CapsuleCollider:
   m_ObjectHideFlags: 1
