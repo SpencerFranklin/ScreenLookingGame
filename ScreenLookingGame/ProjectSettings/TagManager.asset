@@ -3,7 +3,22 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - pickupAble
+  - Explosion
+  - glass
+  - Floor
+  - metal
+  - Manager
+  - LockCursor
+  - Missile
+  - WeaponCamera
+  - Laser
+  - RoomParent
+  - Room
+  - Ceiling
+  - Door
+  - Playerr
   layers:
   - Default
   - TransparentFX
