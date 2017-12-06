@@ -253,8 +253,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e811a08ef0f78fd408aed9707cf94d37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numPlayers: 1
-  playersInScene: []
+  numPlayers: 4
+  playerList: []
 --- !u!1 &1459786671
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,7 +273,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &1459786672
 AudioListener:
   m_ObjectHideFlags: 0

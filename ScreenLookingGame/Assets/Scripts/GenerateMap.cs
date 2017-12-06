@@ -209,8 +209,8 @@ public class GenerateMap : MonoBehaviour
 				foreach (Transform child in pList[x].transform) {
 					foreach (Transform child2 in pList[i].transform) {
 						if (child.name == child2.name) {
-							child.tag = "Door";
-							child2.tag = "Door";
+							child.name = "Door";
+							child2.name = "Door";
 						}
 					}
 				}
@@ -483,23 +483,15 @@ public class GenerateMap : MonoBehaviour
 		GameObject[] pList = GameObject.FindGameObjectsWithTag ("RoomParent");
 		foreach (GameObject g in pList) {
 			foreach (Transform child in g.transform) {
-				if (child.CompareTag("Door")) {
-					if (GameObject.Find("Room").transform.Find(child.name)) {
-						Destroy (child.gameObject);
-					} else {
-						GameObject obj = Instantiate (Resources.Load ("Door", typeof(GameObject)), g.transform) as GameObject;
-						obj.transform.position = child.position;
-						obj.transform.rotation = child.rotation;
-						obj.name = child.name;
-						obj.tag = "Door";
-						//Debug.Log (wall.gameObject);
-						//Destroy (child.gameObject);
-					}
+				if (child.name == "Door") {
+					GameObject obj = Instantiate (Resources.Load ("Door", typeof(GameObject)), g.transform) as GameObject;
+					obj.transform.position = child.position;
+					obj.transform.rotation = child.rotation;
+					//Debug.Log (wall.gameObject);
+					Destroy (child.gameObject);
 				}
 			}
 		}
-
-		this.enabled = false;
 	}
 
 
