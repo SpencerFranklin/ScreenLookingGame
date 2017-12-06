@@ -14,7 +14,8 @@ public class Player : MonoBehaviour {
 	}
 
 	void Start () {
-		
+		this.gameObject.transform.tag = "Playerr";
+
 	}
 
 	void Awake(){

@@ -481,17 +481,23 @@ public class GenerateMap : MonoBehaviour
 	void Update ()
 	{
 		GameObject[] pList = GameObject.FindGameObjectsWithTag ("RoomParent");
+		List<string> dList = new List<string>();
 		foreach (GameObject g in pList) {
 			foreach (Transform child in g.transform) {
-				if (child.name == "Door") {
-					GameObject obj = Instantiate (Resources.Load ("Door", typeof(GameObject)), g.transform) as GameObject;
-					obj.transform.position = child.position;
-					obj.transform.rotation = child.rotation;
-					//Debug.Log (wall.gameObject);
-					Destroy (child.gameObject);
+				if (child.CompareTag("Door")) {
+					if (dList.Contains(child.name)) {
+						Destroy (child.gameObject);
+					} else {
+						dList.Add (child.name);
+						GameObject obj = Instantiate (Resources.Load ("Door", typeof(GameObject)), g.transform) as GameObject;
+						obj.transform.position = child.position;
+						obj.transform.rotation = child.rotation;
+						Destroy (child.gameObject);
+					}
 				}
 			}
 		}
+		this.enabled = false;
 	}
 
 
