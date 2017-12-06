@@ -56,7 +56,7 @@ public class Wall : MonoBehaviour
 	}
 
 	public void addArt(){
-		if (Random.value > .75f && this.tag != "Door") {
+		if (Random.value > .75f && this.name != "Door(Clone)") {
 			GameObject o = Instantiate (Global.art[Random.Range(0, Global.art.Count)], this.transform) as GameObject;
 			o.transform.rotation = o.transform.rotation;
 

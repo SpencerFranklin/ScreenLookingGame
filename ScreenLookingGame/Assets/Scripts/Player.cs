@@ -16,10 +16,15 @@ public class Player : MonoBehaviour {
 
 	void Start () {
 		this.gameObject.transform.tag = "Playerr";
-		if (it)
+		if (it) {
 			notItObj.SetActive (false);
-		else
+			itObj.SetActive (true);
+
+		} else {
+			notItObj.SetActive (true);
+
 			itObj.SetActive (false);
+		}
 	}
 
 	void Awake(){
@@ -27,8 +32,16 @@ public class Player : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
-		if (!it)
-			timeNotIt += Time.deltaTime;
+		
+		if (it) {
+			notItObj.SetActive (false);
+			itObj.SetActive (true);
+
+		} else {
+			notItObj.SetActive (true);
+
+			itObj.SetActive (false);
+		}
 	}
 
 	void OnCollisionEnter(Collision c){
@@ -47,7 +60,7 @@ public class Player : MonoBehaviour {
 					it = true;
 				}
 			}
-			Destroy (c.gameObject);
+			//Destroy (c.gameObject);
 		}
 
 	}
