@@ -197,28 +197,30 @@ public class GenerateMap : MonoBehaviour
 			Destroy (p1.gameObject);
 		}
 
+
 		GameObject[] pList = GameObject.FindGameObjectsWithTag ("RoomParent");
+		List<GameObject> dList = new List<GameObject>();
 		for (int x = 0; x < pList.Length; x++) {
 			for (int i = x + 1; i < pList.Length; i++) {
 				foreach (Transform child in pList[x].transform) {
 					foreach (Transform child2 in pList[i].transform) {
 						if (child.name == child2.name) {
-							child.tag = "Door";
-							child2.tag = "Door";
+							child.name = "Door";
+							child2.name = "Door";
 						}
 					}
 				}
 			}
 		}
 
-		GameObject[] doors = GameObject.FindGameObjectsWithTag ("Door");
-		for (int x = 0; x< doors.Length; x++) {
-			GameObject obj = Instantiate (Resources.Load ("Door", typeof(GameObject)), doors[x].transform.parent) as GameObject;
-			obj.transform.position = doors[x].transform.position;
-			obj.transform.rotation = doors[x].transform.rotation;
-			Debug.Log (doors[x]);
-			Destroy (doors[x]);
-		}
+		Debug.Log (dList.Count);
+		/*foreach(GameObject go in dList) {
+			GameObject obj = Instantiate (Resources.Load ("Door", typeof(GameObject)), go.transform.parent) as GameObject;
+			obj.transform.position = go.transform.position;
+			obj.transform.rotation = go.transform.rotation;
+			//Debug.Log (go);
+			Destroy (go);
+		}*/
 	}
 
 	void SwapWallAt( Global.Direction dir, Vector2 pt, Vector2 distance){
