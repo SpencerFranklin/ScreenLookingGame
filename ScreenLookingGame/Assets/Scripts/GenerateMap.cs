@@ -53,7 +53,7 @@ public class GenerateMap : MonoBehaviour
 			//i++;
 			GameObject g = MakeRoom ();
 			//g.transform.position = new Vector3 (g.transform.position.x + i * 5, g.transform.position.y, g.transform.position.z);
-			currentMap.Add (g.GetComponent<Room>());
+			currentMap.Add (g.GetComponent<Room> ());
 			currentMapObj.Add (g);
 			totalRoomLimit--;
 		}
@@ -70,7 +70,7 @@ public class GenerateMap : MonoBehaviour
 			if (!mustMove) {
 				mapGrid.AddRange (r.gridList);
 				string str = "";
-				foreach (Vector2 v in r.gridList){
+				foreach (Vector2 v in r.gridList) {
 					str = str + " " + v.ToString ();
 				}
 //				Debug.Log ("Added " + str);
@@ -129,12 +129,12 @@ public class GenerateMap : MonoBehaviour
 				Vector2 distance = mapConnectPt - newRoomConnectPt;
 				int ctr = 0;
 
-				for (int i = 0; i < r.gridList.Count; i++){
-					r.gridList [i] = r.gridList [i] + new Vector2 (distance.x +xBuf , distance.y + yBuf );
+				for (int i = 0; i < r.gridList.Count; i++) {
+					r.gridList [i] = r.gridList [i] + new Vector2 (distance.x + xBuf, distance.y + yBuf);
 					//Debug.Log ("updating gridlist");
 					mapGrid.Add (r.gridList [i]);
 				}
-				r.room.transform.position = r.room.transform.position + (new Vector3 (distance.x +xBuf , 0, distance.y + yBuf ));
+				r.room.transform.position = r.room.transform.position + (new Vector3 (distance.x + xBuf, 0, distance.y + yBuf));
 				/*
 				foreach (Vector2 v in r.gridList) {
 					if (v == newRoomConnectPt) {
@@ -171,7 +171,7 @@ public class GenerateMap : MonoBehaviour
 
 				//mapGrid.AddRange (r.gridList);
 				string str = "";
-				foreach (Vector2 v in r.gridList){
+				foreach (Vector2 v in r.gridList) {
 					str = str + " " + v.ToString ();
 				}
 //				Debug.Log ("Added " + str);
@@ -199,7 +199,7 @@ public class GenerateMap : MonoBehaviour
 
 
 		GameObject[] pList = GameObject.FindGameObjectsWithTag ("RoomParent");
-		List<GameObject> dList = new List<GameObject>();
+
 		for (int x = 0; x < pList.Length; x++) {
 			for (int i = x + 1; i < pList.Length; i++) {
 				foreach (Transform child in pList[x].transform) {
@@ -212,15 +212,6 @@ public class GenerateMap : MonoBehaviour
 				}
 			}
 		}
-
-		Debug.Log (dList.Count);
-		/*foreach(GameObject go in dList) {
-			GameObject obj = Instantiate (Resources.Load ("Door", typeof(GameObject)), go.transform.parent) as GameObject;
-			obj.transform.position = go.transform.position;
-			obj.transform.rotation = go.transform.rotation;
-			//Debug.Log (go);
-			Destroy (go);
-		}*/
 	}
 
 	void SwapWallAt( Global.Direction dir, Vector2 pt, Vector2 distance){
@@ -259,15 +250,13 @@ public class GenerateMap : MonoBehaviour
 				Transform pick = o.transform.parent.GetChild (o.transform.parent.gameObject.GetComponent<Room> ().gridList.IndexOf (pt));
 				Debug.Log (o.transform.parent.gameObject.GetComponent<Room> ().gridList.IndexOf (pt));
 				foreach (Transform wall in pick) {
-						if ((int)wall.gameObject.GetComponent<Wall> ().getDirection () == (int)dir && !wall.gameObject.name.Equals ("Door(Clone)")) {
-							GameObject obj = Instantiate (Resources.Load ("Door", typeof(GameObject)), o.transform) as GameObject;
-							obj.transform.position = wall.position;
-							obj.transform.rotation = wall.rotation;
-							Debug.Log (wall.gameObject);
-							Destroy (wall.gameObject);	
-						}
-					
-
+					if ((int)wall.gameObject.GetComponent<Wall> ().getDirection () == (int)dir && !wall.gameObject.name.Equals ("Door(Clone)")) {
+						GameObject obj = Instantiate (Resources.Load ("Door", typeof(GameObject)), o.transform) as GameObject;
+						obj.transform.position = wall.position;
+						obj.transform.rotation = wall.rotation;
+						Debug.Log (wall.gameObject);
+						Destroy (wall.gameObject);	
+					}
 				}
 				/*foreach (Transform block in o.transform) {
 					Debug.Log (o.GetComponent<Room>().gridList[i]);
@@ -473,10 +462,20 @@ public class GenerateMap : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		
+		GameObject[] pList = GameObject.FindGameObjectsWithTag ("RoomParent");
+
+		foreach (GameObject g in pList) {
+			foreach (Transform child in g.transform) {
+				if (child.name == "Door") {
+					GameObject obj = Instantiate (Resources.Load ("Door", typeof(GameObject)), child.parent) as GameObject;
+					obj.transform.position = child.transform.position;
+					obj.transform.rotation = child.transform.rotation;
+					Debug.Log ("Door made");
+					Destroy (child.gameObject);
+				}
+			}
+		}
+		this.enabled = false;
 	}
-
-
-
 
 }
