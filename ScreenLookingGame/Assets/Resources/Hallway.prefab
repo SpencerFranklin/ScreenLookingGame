@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 4461016611697636}
   m_Layer: 0
   m_Name: Hallway
-  m_TagString: Untagged
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -452,6 +452,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDoor: 0
   isColliding: 0
+  isConnecter: 0
 --- !u!114 &114451971788256370
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -465,6 +466,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDoor: 0
   isColliding: 0
+  isConnecter: 0
 --- !u!114 &114938796032578282
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -478,6 +480,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDoor: 0
   isColliding: 0
+  isConnecter: 0
 --- !u!114 &114964309865459564
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -491,3 +494,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDoor: 0
   isColliding: 0
+  isConnecter: 0
