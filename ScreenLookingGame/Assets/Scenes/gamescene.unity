@@ -331,9 +331,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allRoomGameObj: []
   totalRoomLimit: 8
-  minOfMinRange: 5
-  maxOfMinRange: 8
-  minOfMaxRange: 12
+  minOfMinRange: 8
+  maxOfMinRange: 12
+  minOfMaxRange: 16
   maxOfMaxRange: 18
   matList:
   - {fileID: 2100000, guid: c5c959d144c36f74fba1e31b6c74371e, type: 2}

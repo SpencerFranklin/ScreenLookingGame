@@ -164,4 +164,18 @@ public class Room : MonoBehaviour
 		}
 	}
 
+	public void addLights(){
+		foreach (Room r in blocksInRoom) {
+			foreach (Transform t in r.room.transform) {
+				if (Random.value > .6f && t.tag == "Ceiling") {
+					GameObject o = Instantiate (Resources.Load("Lamp", typeof(GameObject)), r.room.transform) as GameObject;
+					o.transform.position = new Vector3 (t.position.x, t.position.y + o.transform.position.y, t.position.z);
+
+					o.transform.Rotate (new Vector3 (0, Random.Range (0, 360), 0)); 
+				}
+			}
+
+		}
+	}
+
 }
