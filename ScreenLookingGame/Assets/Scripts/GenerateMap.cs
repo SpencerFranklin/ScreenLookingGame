@@ -410,8 +410,10 @@ public class GenerateMap : MonoBehaviour
 		foreach (Transform block in r.room.transform) {
 			foreach (Transform wall in block) {
 				if (wall.tag != "Floor") {
-					Renderer rend = wall.GetComponent<Renderer> ();
-					rend.material = m;
+					if (wall.GetComponent<Renderer> ()) {
+						Renderer rend = wall.GetComponent<Renderer> ();
+						rend.material = m;
+					}
 				}
 			}
 		}

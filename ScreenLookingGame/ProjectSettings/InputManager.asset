@@ -228,7 +228,7 @@ InputManager:
     invert: 0
     type: 2
     axis: 3
-    joyNum: 3
+    joyNum: 4
   - serializedVersion: 3
     m_Name: P1Mouse Y
     descriptiveName: 
