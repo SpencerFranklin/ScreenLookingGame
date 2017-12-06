@@ -22,6 +22,7 @@ public class Room : MonoBehaviour
 	{
 		room = room_;
 		name = name_;
+		spawnObjectsInRoom ();
 	}
 	// Update is called once per frame
 	void Update ()
@@ -153,5 +154,14 @@ public class Room : MonoBehaviour
 		return false;
 	}
 
+	public void spawnObjectsInRoom(){
+		foreach (Room r in blocksInRoom) {
+			if (Random.value > .2f) {
+				GameObject o = Instantiate (Resources.Load ("Table1" , typeof(GameObject)), r.gameObject.transform) as GameObject;
+				o.transform.rotation = Random.rotation;
+			}
+
+		}
+	}
 
 }
