@@ -33,15 +33,14 @@ public class Player : MonoBehaviour {
 
 	void OnCollisionEnter(Collision c){
 		int l = c.gameObject.layer;
-		if (l == LayerMask.NameToLayer("P1") || 
-			l == LayerMask.NameToLayer("P2") ||
-			l == LayerMask.NameToLayer("P3") ||
-			l == LayerMask.NameToLayer("P4")) {
-
-			string cl = LayerMask.LayerToName (l);
+		string lm = LayerMask.LayerToName (l).Substring (0, 2);
+		if (lm == "P1" || 
+			lm == "P2" ||
+			lm == "P3" ||
+			lm == "P4") {
 
 			if (!it) {
-				GameObject o = GameObject.Find (cl);
+				GameObject o = GameObject.Find (lm);
 				if (o.GetComponent<Player> ().it != true) {
 					o.GetComponent<Player> ().it = true;
 				} else {

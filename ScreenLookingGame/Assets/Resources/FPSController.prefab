@@ -3110,6 +3110,8 @@ MonoBehaviour:
   it: 0
   id: 0
   timeNotIt: 0
+  notItObj: {fileID: 0}
+  itObj: {fileID: 0}
 --- !u!114 &114436094863746388
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3123,7 +3125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerID: 
   bullet: {fileID: 1222611440063164, guid: 78157f89b6c60cb4d9b01d82a268a57c, type: 2}
-  speed: 5
+  speed: 8
 --- !u!114 &114747918180375912
 MonoBehaviour:
   m_ObjectHideFlags: 1
