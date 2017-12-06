@@ -11,6 +11,7 @@ public class Wall : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
+		this.addArt ();
 		//Debug.Log (this.gameObject.transform.localPosition + "  " + this.gameObject.name);
 	}
 	
@@ -52,6 +53,33 @@ public class Wall : MonoBehaviour
 	void OnTriggerExit(){
 
 		isColliding = false;
+	}
+
+	public void addArt(){
+		if (Random.value > .75f) {
+			GameObject o = Instantiate (Global.art[Random.Range(0, Global.art.Count)], this.transform) as GameObject;
+			o.transform.rotation = o.transform.rotation;
+
+			if ((int) this.getDirection() == 0){
+				o.transform.position = new Vector3 (o.transform.position.x, o.transform.position.y, o.transform.position.z - .01f);
+				o.transform.Rotate (0, 0, 180);
+			}
+			if ((int) this.getDirection() == 1){
+				o.transform.position = new Vector3 (o.transform.position.x, o.transform.position.y, o.transform.position.z + .01f);
+				o.transform.Rotate (0, 0, 180);
+
+			}	
+			if ((int) this.getDirection() == 2){
+				o.transform.position = new Vector3 (o.transform.position.x-.01f, o.transform.position.y, o.transform.position.z);
+				o.transform.Rotate (0, 0, 180);
+
+			}	
+			if ((int) this.getDirection() == 3){
+				o.transform.position = new Vector3 (o.transform.position.x+.01f, o.transform.position.y, o.transform.position.z);
+				o.transform.Rotate (0, 0, 180);
+
+			}	
+		}
 	}
 
 
