@@ -20,7 +20,7 @@ public class Shoot : MonoBehaviour {
 		if(Input.GetButtonDown(playerID + "Fire1")) {
 			GameObject instantiatedProjectile = Instantiate(bullet, barrel.transform.position, barrel.transform.rotation);
 
-			string l = LayerMask.LayerToName (barrel.layer).Substring (0, 2);
+			string l = LayerMask.LayerToName (barrel.layer);
 			instantiatedProjectile.gameObject.layer = LayerMask.NameToLayer (l);
 
 			instantiatedProjectile.GetComponent<Rigidbody>().velocity = barrel.transform.TransformDirection(Vector3.forward*speed);
