@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class PlayerManager : MonoBehaviour {
 
@@ -13,6 +15,7 @@ public class PlayerManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		//SceneManager.LoadScene ("EndGame");
 		List<int> usedSpawns = new List<int> ();
 		GenerateMap.ins.StartMap ();
 		for (int i = 0; i < numPlayers; i++) {
@@ -39,6 +42,10 @@ public class PlayerManager : MonoBehaviour {
 					
 		}
 	}
+
+
+
+
 	
 	// Update is called once per frame
 	void Update () {
@@ -48,8 +55,8 @@ public class PlayerManager : MonoBehaviour {
 				itCount++;
 			}
 		}
-		if (rounds >= 0) {
-			//load end game scene
+		if (rounds <= 0) {
+			SceneManager.LoadScene ("EndGame");
 		}
 		if (itCount == numPlayers) {
 			NewMatch ();

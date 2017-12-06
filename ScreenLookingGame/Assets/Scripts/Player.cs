@@ -16,7 +16,10 @@ public class Player : MonoBehaviour {
 	void Start () {
 		
 	}
-	
+
+	void Awake(){
+		DontDestroyOnLoad (this);
+	}
 	// Update is called once per frame
 	void Update () {
 		if (!it)
