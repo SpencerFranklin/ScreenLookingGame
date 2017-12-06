@@ -194,20 +194,30 @@ public class GenerateMap : MonoBehaviour
 					
 			}
 		}
+		int q = 0;
 		foreach (GameObject o in list) {
-			if (o.name.Equals ("Room") && o.GetComponent<Room>().gridList.Contains(pt)) {
+			
 
-				for (int i = 0; i < o.GetComponent<Room>().gridList.Count; i++){
+			string s = "";
+			if (o.tag == "Room" && o.transform.parent.gameObject.GetComponent<Room>().gridList.Contains(pt)) {
+				
+				foreach (Vector2 vec in o.transform.parent.gameObject.GetComponent<Room>().gridList) {
+					s = s + " " + vec;
+				}
+				Debug.Log("The point: " + pt + " room #: " + q + " room gridlist: " + s);
+				for (int i = 0; i < o.transform.parent.gameObject.GetComponent<Room>().gridList.Count; i++){
 					//o.GetComponent<Room>().gridList [i] = o.GetComponent<Room>().gridList [i] + distance;
 					//Debug.Log(
 				}
 
-				Room pick = o.GetComponent<Room> ().blocksInRoom [o.GetComponent<Room> ().gridList.IndexOf (pt)];
-				foreach (Transform wall in pick.room.transform) {
+				Transform pick = o.transform.parent.GetChild (o.transform.parent.gameObject.GetComponent<Room> ().gridList.IndexOf (pt));
+				Debug.Log (o.transform.parent.gameObject.GetComponent<Room> ().gridList.IndexOf (pt));
+				foreach (Transform wall in pick) {
 						if ((int)wall.gameObject.GetComponent<Wall> ().getDirection () == (int)dir && !wall.gameObject.name.Equals ("Door(Clone)")) {
-							GameObject obj = Instantiate (Resources.Load ("Door", typeof(GameObject)), pick.room.transform) as GameObject;
+							GameObject obj = Instantiate (Resources.Load ("Door", typeof(GameObject)), o.transform) as GameObject;
 							obj.transform.position = wall.position;
 							obj.transform.rotation = wall.rotation;
+							Debug.Log (wall.gameObject);
 							Destroy (wall.gameObject);	
 						}
 					
@@ -239,7 +249,7 @@ public class GenerateMap : MonoBehaviour
 				break;
 
 			}
-
+			q++;
 		}
 
 	}

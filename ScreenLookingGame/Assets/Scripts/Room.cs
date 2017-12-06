@@ -21,6 +21,7 @@ public class Room : MonoBehaviour
 	public Room (GameObject room_, string name_)
 	{
 		room = room_;
+		room.tag = "Room";
 		name = name_;
 	}
 	// Update is called once per frame
