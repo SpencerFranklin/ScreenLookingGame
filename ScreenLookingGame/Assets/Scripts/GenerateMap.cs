@@ -209,8 +209,8 @@ public class GenerateMap : MonoBehaviour
 				foreach (Transform child in pList[x].transform) {
 					foreach (Transform child2 in pList[i].transform) {
 						if (child.name == child2.name) {
-							child.name = "Door";
-							child2.name = "Door";
+							child.tag = "Door";
+							child2.tag = "Door";
 						}
 					}
 				}

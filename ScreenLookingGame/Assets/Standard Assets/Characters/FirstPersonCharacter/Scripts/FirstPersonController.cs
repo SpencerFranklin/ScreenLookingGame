@@ -14,8 +14,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
 		public enum PlayerID{
 			P1,P2,P3,P4
 		}
-		public PlayerID pID;
-		private string playerID;
+		//public PlayerID pID;
+		public string playerID;
 
         [SerializeField] private bool m_IsWalking;
         [SerializeField] private float m_WalkSpeed;
@@ -63,7 +63,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
 			//
-			playerID = pID.ToString();
+
+			//playerID = pID.ToString();
 			m_MouseLook.playerID = playerID;
         }
 

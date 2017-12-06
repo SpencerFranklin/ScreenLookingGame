@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class Shoot : MonoBehaviour {
 
-	public enum PlayerID{
-		P1,P2,P3,P4
-	}
-	public PlayerID pID;
-	private string playerID;
+	public string playerID;
 
 	public GameObject bullet;
 	public float speed;
@@ -16,7 +12,6 @@ public class Shoot : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		playerID = pID.ToString ();
 		barrel = transform.Find ("Gun").Find("Barrel").gameObject;
 	}
 	
