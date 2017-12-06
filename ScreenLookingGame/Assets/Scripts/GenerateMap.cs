@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GenerateMap : MonoBehaviour
 {
+	public static GenerateMap ins;
 	private List<Room> currentMap = new List<Room> ();
 	public List<GameObject> allRoomGameObj = new List<GameObject> ();
 	private List<Room> allRooms = new List<Room> ();
@@ -20,7 +21,10 @@ public class GenerateMap : MonoBehaviour
 	private int roomPointer = 0;
 	public float wallSpawnFrequency;
 	// Use this for initialization
-	void Start ()
+	void Awake(){
+		ins = this;
+	}
+	public void StartMap ()
 	{
 		if (allRoomGameObj.Count > 0) {
 			foreach (GameObject o in allRoomGameObj) {
