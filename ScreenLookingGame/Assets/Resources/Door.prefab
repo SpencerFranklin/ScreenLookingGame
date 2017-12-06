@@ -109,3 +109,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDoor: 0
   isColliding: 0
+  isConnecter: 0
