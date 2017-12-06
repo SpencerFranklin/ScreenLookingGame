@@ -24,7 +24,8 @@ public class GenerateMap : MonoBehaviour
 	{
 		if (allRoomGameObj.Count > 0) {
 			foreach (GameObject o in allRoomGameObj) {
-				allRooms.Add (new Room (o, o.name));
+				Room temp = new Room (o, o.name);
+				allRooms.Add (temp);
 			}
 		}
 		//create empty object to be parent of the map
@@ -42,7 +43,7 @@ public class GenerateMap : MonoBehaviour
 
 		//Generate ();
 		MakeMap();
-
+		placeDoors ();
 	}
 
 	public void MakeMap(){
@@ -134,7 +135,7 @@ public class GenerateMap : MonoBehaviour
 					mapGrid.Add (r.gridList [i]);
 				}
 				r.room.transform.position = r.room.transform.position + (new Vector3 (distance.x +xBuf , 0, distance.y + yBuf ));
-
+				/*
 				foreach (Vector2 v in r.gridList) {
 					if (v == newRoomConnectPt) {
 						if (rand == 0) {
@@ -163,9 +164,11 @@ public class GenerateMap : MonoBehaviour
 						break;
 					}
 				}
-
+				*/
 
 				PaintRoom (r);
+
+
 				//mapGrid.AddRange (r.gridList);
 				string str = "";
 				foreach (Vector2 v in r.gridList){
@@ -176,6 +179,47 @@ public class GenerateMap : MonoBehaviour
 		}
 	}
 
+	void placeDoors() {
+
+		GameObject[] list = GameObject.FindGameObjectsWithTag ("Room");
+		List<GameObject> cList = new List<GameObject>();
+		foreach (GameObject go in list) {
+			foreach (Transform child in go.transform) {
+				child.name = child.position.ToString();
+				cList.Add(child.gameObject);
+			}
+			//go.transform.DetachChildren ();
+			//Destroy (go);
+		}
+		foreach (GameObject go in cList) {
+			Transform p1 = go.transform.parent;
+			go.transform.parent = p1.parent;
+			Destroy (p1.gameObject);
+		}
+
+		GameObject[] pList = GameObject.FindGameObjectsWithTag ("RoomParent");
+		for (int x = 0; x < pList.Length; x++) {
+			for (int i = x + 1; i < pList.Length; i++) {
+				foreach (Transform child in pList[x].transform) {
+					foreach (Transform child2 in pList[i].transform) {
+						if (child.name == child2.name) {
+							child.tag = "Door";
+							child2.tag = "Door";
+						}
+					}
+				}
+			}
+		}
+
+		GameObject[] doors = GameObject.FindGameObjectsWithTag ("Door");
+		for (int x = 0; x< doors.Length; x++) {
+			GameObject obj = Instantiate (Resources.Load ("Door", typeof(GameObject)), doors[x].transform.parent) as GameObject;
+			obj.transform.position = doors[x].transform.position;
+			obj.transform.rotation = doors[x].transform.rotation;
+			Debug.Log (doors[x]);
+			Destroy (doors[x]);
+		}
+	}
 
 	void SwapWallAt( Global.Direction dir, Vector2 pt, Vector2 distance){
 		GameObject[] list =  GameObject.FindObjectsOfType<GameObject>();
@@ -336,6 +380,7 @@ public class GenerateMap : MonoBehaviour
 	public GameObject InsRoom(Room r){
 		GameObject p = new GameObject();
 		p.name = "Room";
+		p.tag = "RoomParent";
 		foreach (Vector2 v in r.gridList) {
 			GameObject obj = Instantiate (Resources.Load ("Square", typeof(GameObject)), p.transform) as GameObject;
 			obj.transform.position = new Vector3(obj.transform.position.x + v.x, obj.transform.position.y, obj.transform.position.z + v.y);
