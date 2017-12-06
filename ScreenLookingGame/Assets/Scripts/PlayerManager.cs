@@ -34,6 +34,8 @@ public class PlayerManager : MonoBehaviour {
 			o.GetComponent<Player> ().it = playerList [i].it;
 
 			string id = "P" + (i + 1);
+			o.name = id;
+
 			o.GetComponent<FirstPersonController> ().playerID = id;
 			o.GetComponentInChildren<Shoot>().playerID = id;
 
